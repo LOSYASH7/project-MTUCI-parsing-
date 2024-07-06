@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Результаты поиска вакансий</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            background-image: url("https://get.wallhere.com/photo/1920x1080-px-black-grunge-stones-textures-1483643.jpg");
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 3em;
+            text-shadow: 2px 2px 4px #000000;
+            backdrop-filter: blur(5px); /* Размытие фона за текстом */
+        }
+
+        ul.navbar {
+            list-style-type: none;
+            padding: 0;
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            backdrop-filter: blur(5px); /* Размытие фона за меню */
+        }
+
+        ul.navbar li {
+            margin: 0 10px;
+        }
+
+        ul.navbar li a {
+            text-decoration: none;
+            color: #ffcc00;
+            font-size: 1.5em;
+            position: relative;
+            transition: color 0.3s, transform 0.3s;
+            display: flex;
+            align-items: center;
+        }
+
+        ul.navbar li a::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 3px;
+            background: #ffcc00;
+            transition: width 0.3s;
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        ul.navbar li a i {
+            margin-right: 8px;
+        }
+
+        ul.navbar li a:hover {
+            color: #ff9900;
+            transform: scale(1.05);
+        }
+
+        ul.navbar li a:hover::after {
+            width: 100%;
+        }
+
+        ul.vacancies-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 0;
+            margin: 20px 0;
+            width: 90%;
+            backdrop-filter: blur(5px); /* Размытие фона за списком */
+        }
+
+        .vacancy-item {
+            background-color: rgba(255, 255, 255, 0.85); /* Сделаем фон полупрозрачным */
+            margin: 15px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            max-width: 300px;
+            width: 100%;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .vacancy-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .vacancy-title {
+            font-weight: bold;
+            color: #ff6600;
+            margin-bottom: 10px;
+            font-size: 1.5em;
+        }
+
+        .company-name {
+            color: #ff3300;
+            font-style: italic;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .skills {
+            color: #ff6600;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .vacancy-link {
+            text-decoration: none;
+            color: #ffffff;
+            background-color: #ff9900;
+            padding: 10px 20px;
+            border-radius: 5px;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+            font-size: 1em;
+        }
+
+        .vacancy-link:hover {
+            background-color: #cc7a00;
+        }
+    </style>
+</head>
+
+<body>
+    <ul class="navbar">
+        <li><a href="/parsing_analysis"><i class="material-icons">search</i>Анализ парсинга</a></li>
+        <li><a href="/latest_vacancies"><i class="material-icons">history</i>История запросов</a></li>
+    </ul>
+    <h1>Результаты поиска вакансий</h1>
+    <ul class="vacancies-list">
+        {% for vacancy in vacancies %}
+        <li class="vacancy-item">
+            <div class="vacancy-info">
+                <span class="vacancy-title">{{ vacancy['title'] }}</span><br>
+                <span class="company-name">{{ vacancy['company'] }}</span><br>
+                <span class="skills">{{ vacancy['skills'] }}</span><br>
+                <a href="{{ vacancy['link'] }}" class="vacancy-link" target="_blank">Подробнее</a>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+    <script>
+        document.getElementById('saveButton').addEventListener('click', function () {
+            var city = document.getElementById('city').value;
+            var company = document.getElementById('company').value;
+            var jobTitle = document.getElementById('job_title').value;
+            var skills = document.getElementById('skills').value;
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/save_search', true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.send(JSON.stringify({
+                city: city,
+                company: company,
+                jobTitle: jobTitle,
+                skills: skills
+            }));
+        });
+    </script>
+</body>

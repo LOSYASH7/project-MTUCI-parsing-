@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Последние данные парсинга</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url("https://get.wallhere.com/photo/1920x1080-px-black-grunge-stones-textures-1483643.jpg");
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            width: 80%;
+            max-width: 600px;
+            margin-top: 20px;
+        }
+
+        li {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            cursor: pointer;
+        }
+
+        li:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        li:nth-child(odd) {
+            background-color: #fefefe;
+        }
+
+        li:nth-child(even) {
+            background-color: #fafafa;
+        }
+    </style>
+</head>
+<body>
+    <h1>Последние данные парсинга</h1>
+    <ul>
+        {% for vacancy in vacancies %}
+            <li>{{ vacancy }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

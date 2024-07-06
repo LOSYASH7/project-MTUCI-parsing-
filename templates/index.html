@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Поиск вакансий</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url("https://get.wallhere.com/photo/1920x1080-px-black-grunge-stones-textures-1483643.jpg");
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #fff;
+        }
+
+        form {
+            max-width: 400px;
+            width: 100%;
+            padding: 40px;
+            border: 2px solid #98ACC0; /* светло-синий цвет */
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.8); /* полупрозрачный белый фон */
+            backdrop-filter: blur(10px);
+            text-align: center;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            color: #333;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Тень для текста */
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #98ACC0; /* светло-синий цвет */
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #98ACC0; /* светло-синий цвет */
+            color: #fff;
+            padding: 12px 0;
+            border: none;
+            cursor: pointer;
+            border-radius: 20px;
+            width: 100%;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: background-color 0.3s ease, transform 0.3s ease; /* Переход для анимации */
+        }
+
+        input[type="submit"]:hover {
+            background-color: #7898B5; /* изменение цвета при наведении */
+            transform: translateY(-5px); /* подъем кнопки при наведении */
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3); /* усиление тени при наведении */
+        }
+
+        .his_cont {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .text1 {
+            color: #98ACC0; /* светло-синий цвет */
+            text-decoration: none;
+        }
+
+        .text1:hover {
+            text-decoration: underline; /* подчеркнутая ссылка при наведении */
+        }
+    </style>
+</head>
+<body>
+    <form action="/advanced_search" method="post">
+        <h1>Поиск вакансий</h1>
+        <label for="city">Город:</label>
+        <input type="text" id="city" name="city"><br>
+        <label for="company">Компания:</label>
+        <input type="text" id="company" name="company"><br>
+        <label for="job_title">Название должности:</label>
+        <input type="text" id="job_title" name="job_title"><br>
+        <label for="skills">Навыки:</label>
+        <input type="text" id="skills" name="skills"><br>
+        <input type="submit" value="Поиск">
+        <div class="his_cont">
+            <a href="/latest_vacancies" class="text1">История запросов</a>
+        </div>
+    </form>
+</body>
+</html>

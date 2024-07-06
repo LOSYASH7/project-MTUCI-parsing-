@@ -1,0 +1,7 @@
+requests
+beautifulsoup4
+lxml
+txt
+flask
+datetime
+urljoin
